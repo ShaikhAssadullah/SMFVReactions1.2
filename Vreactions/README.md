@@ -1,13 +1,13 @@
 <p align="center">
 <img src="https://i.imgur.com/Xfr09sS.png?1" alt="TVP logo"><br>
-<img src="https://img.shields.io/badge/License-MPL%202.0-green" alt="MPL License"><br>
-<img src="https://img.shields.io/badge/SMF-2.0-yellow" alt="SMF 2.0"><br>
+<img src="https://img.shields.io/badge/License-MPL%202.0-green" alt="MPL License">  
+<img src="https://img.shields.io/badge/SMF-2.0-yellow" alt="SMF 2.0"> 
 <img src="https://img.shields.io/badge/SMF-2.1-yellowgreen" alt="SMF 2.1">
 </p>
 
 ## SMF Versatile Post Reactions
 
-- *Developed by [Assadullah Shaikh AKA Decent_946](https://github.com/TheVersatilePro)
+*Developed by [Assadullah Shaikh AKA Decent_946](https://github.com/TheVersatilePro)
 
 ## About Mod:
 
@@ -27,7 +27,7 @@
 - A user can react with multiple reactions on same post.
 
 <strong>Admins:</strong>
--Edit, Add and Remove Reaction Emojis with via Admin Panel.
+- Edit, Add and Remove Reaction Emojis with via Admin Panel.
 
 <strong>Admin Tabs:</strong>
 - Admin -> Forum -> VReactions:
