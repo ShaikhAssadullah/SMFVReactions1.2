@@ -7,18 +7,18 @@
 
 ## SMF Versatile Post Reactions
 
-*Developed by [Assadullah Shaikh AKA Decent_946](https://github.com/TheVersatilePro)
+* Developed by [Assadullah Shaikh AKA Decent_946](https://github.com/TheVersatilePro)
 
 ## About Mod:
 
-*This mod adds animated reaction emojis/smileys below every post of a topic. It allows users to show their reaction towards the post by clicking the emoji. 
-*By hovering over the emoji, you can view the list of users who have reacted to the post with selected reaction. Reaction count is also displayed alongside each emoji separately.
+* This mod adds animated reaction emojis/smileys below every post of a topic. It allows users to show their reaction towards the post by clicking the emoji. 
+* By hovering over the emoji, you can view the list of users who have reacted to the post with selected reaction. Reaction count is also displayed alongside each emoji separately.
 
 ## Credits: 
 
-*I pay my special credits to @Arantor for helping me in solving queries and errors of the mod. :)
+* I pay my special credits to @Arantor for helping me in solving queries and errors of the mod. :)
 
-*The mod is Inspired by: [Awesome Post Ratings](https://www.smfhacks.com/awesomepostratings.php) and [SMFPacks Reactions Mod](https://www.smfpacks.com/reactionsmod).
+* The mod is Inspired by: [Awesome Post Ratings](https://www.smfhacks.com/awesomepostratings.php) and [SMFPacks Reactions Mod](https://www.smfpacks.com/reactionsmod).
 
 ## Features and Options
 
@@ -41,4 +41,4 @@
 - none
 
 ## License
--[Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/)
+* [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/)
