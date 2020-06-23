@@ -35,7 +35,7 @@
   - Edit Reactions - *Contains the list of available Reaction smileys. Allows you to delete any reaction.
   - Add Reactions - *Allows you to add new reaction by uploading a new .gif image file.
   
-## Note: Currently, only .gif file is allowed to be uploaded.
+<strong>Note: Currently, only .gif file is allowed to be uploaded.</strong>
 
 ## Changelog:
 - none
