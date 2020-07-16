@@ -32,6 +32,8 @@ $txt['vreactions_reacted'] = 'Reacted.';
 $txt['vreactions_failed'] = 'Failed.';
 $txt['vreactions_added'] = 'Added.';
 $txt['vreactions_empty'] = 'No reactions';
+$txt['vreactions_members_reacted'] = 'Members reacted';
+$txt['vreactions_delete_confirm'] = 'Are you sure you want to delete this reaction smiley?';
 
 //template data
 $txt['vreactions_text_author'] = 'Author';
@@ -50,6 +52,7 @@ $txt['vreactions_add_features_title'] = 'Do you need additional features in this
 $txt['vreactions_add_features_desc'] = 'Such as; allowing/disallowing users or usergroups to react a post, Delete a reaction of user in a post, etc.<br /><a href="https://www.simplemachines.org/community/index.php?action=profile;u=413310" target="_blank">Contact me via PM at SMF</a> and I\'ll develop the feature for you. :)';
 $txt['vreactions_add_reaction'] = 'Add New Reaction';
 $txt['vreactions_upload'] = 'Upload Image File:';
+$txt['vreactions_text_upload'] = 'Uplaod';
 $txt['vreactions_upload_desc'] = 'Only .gif file is allowed';
 $txt['vreactions_desc'] = 'Emoji Title or Description:';
 
