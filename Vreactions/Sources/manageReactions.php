@@ -202,11 +202,10 @@ function deleteReaction() {
 
 	// If nothing was chosen to delete (shouldn't happen, but meh)
 		if (!isset($_REQUEST['delete_emoji_id']) || !isset($_REQUEST['delete_emoji_name'])) 
-			fatal_error($txt['vreactions_error_file_not_found']);
+			fatal_error($txt['vreactions_error_no_data']);
 
 	//so, we have a proper image now. Defining it's upload directroy.
 	$emoji_loc = $boarddir. '/Themes/default/images/reactions/' .$_REQUEST['delete_emoji_name']. '.gif';
-	$allok = true;
 
 	//we need to inform if the file doesn't exist.
 	$query = $smcFunc['db_query']('',
@@ -219,18 +218,17 @@ function deleteReaction() {
 			)
 	);
 
-	if (!file_exists($emoji_loc) || (!$query)) {
+	if (!file_exists($emoji_loc) && (!$query)) {
 
 		$smcFunc['db_free_result']($query);
 		fatal_error( $txt['vreactions_error_file_not_found'], '- path:'.$emoji_loc. ' and ID ' .$_REQUEST['delete_emoji_id']);
-		$allok = false;
 	}
+	else if (file_exists($emoji_loc) && (!$query)) {
 
-	$smcFunc['db_free_result']($query);
+		unlink($emoji_loc);
+	}
+	else if (!file_exists($emoji_loc) && ($query)) {
 
-
-	//if file is present, delete from DB and from images directory.
-	if ($allok === true ) {
 		$smcFunc['db_query']('',
 			'DELETE FROM {db_prefix}v_reactions_emoji
 			WHERE emoji_id = {int:id_emoji}',
@@ -238,9 +236,22 @@ function deleteReaction() {
 				'id_emoji' => $_REQUEST['delete_emoji_id'],
 			)
 		);
-
+	}
+	else {
+		//if file is present, delete from DB and from images directory.
+		$smcFunc['db_query']('',
+			'DELETE FROM {db_prefix}v_reactions_emoji
+			WHERE emoji_id = {int:id_emoji}',
+			array(
+				'id_emoji' => $_REQUEST['delete_emoji_id'],
+			)
+		);
+		
 		unlink($emoji_loc);
 	}
+
+
+	$smcFunc['db_free_result']($query);
 	//we don't want the user to stay on this action.. right?
 	redirectexit('action=admin;area=vreactions;sa=edit;deleted;id=' .$_REQUEST['delete_emoji_id']);
 }
@@ -335,7 +346,7 @@ function editReactions() {
 				),
 				'data' => array(
 					'sprintf' => array(
-						'format' => '<input type="submit" name="delete" value="Delete" class="button_submit" onclick="confirm(\'Are you sure you want to delete this reaction smiley?\')">
+						'format' => '<input type="submit" name="delete" value="Delete" class="button_submit" onclick="confirm(\'' .(string)$txt['vreactions_delete_confirm']. '\');">
 						<input type="hidden" name="delete_emoji_id" value="%1d">
 						<input type="hidden" name="delete_emoji_name" value="%s">',
 						'params' => array(
