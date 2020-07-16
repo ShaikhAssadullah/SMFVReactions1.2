@@ -94,8 +94,8 @@ function loadreactionemojis($msg_id, $member_id) {
 	//fetching the rows.
 	$num_rows = $smcFunc['db_num_rows']($request);
 
-	//does the data exist? if no, exit the program.
-	if($num_rows <= 0) exit($txt['vreactions_error_empty_table']);
+	//does the data exist? if no, return nothing..
+	if($num_rows <= 0) return "";
 	//if yes, load the emojis.
 	else {
 		//load the data in html layout.
@@ -143,7 +143,7 @@ function addreaction($msg_id, $emoji_id, $member_id) {
 	loadLanguage('vreactions');
 
 	//is it really a member? or a guest/unknown?
-	if(!$member_id) exit($txt['vreactions_error_not_reg']);
+	if(!$member_id || $member_id == 0 ) fatal_error($txt['vreactions_error_not_reg'], false);
 
 	//getting the query with respective msg id and emoji id.
 	$query = $smcFunc['db_query']('',
@@ -162,7 +162,7 @@ function addreaction($msg_id, $emoji_id, $member_id) {
 
 	for ($x=0; $x<sizeof($who_reacts); $x++) {
 
-		if($member_id == $who_reacts[$x]) exit($txt['vreactions_error_already_reacted']);
+		if($member_id == $who_reacts[$x]) fatal_error($txt['vreactions_error_already_reacted'], false);
 		else continue;
 	}
 
@@ -251,12 +251,12 @@ function getwhoreacted($msg_id, $emoji_id) {
 		$emoji_data = $smcFunc['db_fetch_assoc']($emoji_query);
 		$emoji_name = $emoji_data['emoji_name'];
 
-		$data = 'Members reacted ' .$emoji_name. ':';
+		$data = $txt['vreactions_members_reacted']. ' ' .$emoji_name. ':';
 		$data .= '<table><tr class="windowbg2">';
 		for($x=0; $x<sizeof($who_reacts); $x++ ) {
 
 			$request = $smcFunc['db_query']('',
-				'SELECT * FROM {db_prefix}members 
+				'SELECT real_name FROM {db_prefix}members 
 				WHERE id_member = {int:member_id}',
 				array(
 					'member_id' => (int)$who_reacts[$x],
@@ -264,8 +264,8 @@ function getwhoreacted($msg_id, $emoji_id) {
 			);
 
 			$get = $smcFunc['db_fetch_assoc']($request);
-			$username = $get['member_name'];
-			$data .= '<td class="centertext">' .$username. ',</td>';
+			$realname = $get['real_name'];
+			$data .= '<td class="centertext">' .$realname. ',</td>';
 			//lets free the query..
 			$smcFunc['db_free_result']($request);
 		}
@@ -320,7 +320,7 @@ function callReactions() {
 	loadLanguage('vreactions');
 	
 	$request = file_get_contents('php://input');
-	if ($request === FALSE || empty($request)) exit($txt['vreactions_error_no_data']);
+	if ($request === FALSE || empty($request)) fatal_error($txt['vreactions_error_no_data']);
 
 	if (isset($_REQUEST['msg_id'])) {
 
