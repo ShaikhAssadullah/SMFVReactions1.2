@@ -26,6 +26,9 @@ $txt['vreactions_emoji'] = 'Emoji';
 $txt['vreactions_emoji_name'] = 'Name';
 $txt['vreactions_emoji_desc'] = 'Title or Description';
 $txt['vreactions_emoji_delete'] = 'Delete';
+$txt['vreactions_emoji_move'] = 'Move';
+$txt['vreactions_emoji_moveup'] = 'Move Up';
+$txt['vreactions_emoji_movedown'] = 'Move Down';
 
 //general
 $txt['vreactions_reacted'] = 'Reacted.';
@@ -33,7 +36,7 @@ $txt['vreactions_failed'] = 'Failed.';
 $txt['vreactions_added'] = 'Added.';
 $txt['vreactions_empty'] = 'No reactions';
 $txt['vreactions_members_reacted'] = 'Members reacted';
-$txt['vreactions_delete_confirm'] = 'Are you sure you want to delete this reaction smiley?';
+$txt['vreactions_delete_confirm'] = 'Are you sure you want to delete selected reaction smiley(s)?';
 
 //template data
 $txt['vreactions_text_author'] = 'Author';
