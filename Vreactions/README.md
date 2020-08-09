@@ -31,9 +31,9 @@
 
 <strong>Admin Tabs:</strong>
 - Admin -> Forum -> VReactions:
-  - General - *Contains the Mod information and tools used.
-  - Edit Reactions - *Contains the list of available Reaction smileys. Allows you to delete any reaction.
-  - Add Reactions - *Allows you to add new reaction by uploading a new .gif image file.
+  - General - *Contains the Mod information and tools used*.
+  - Edit Reactions - *Contains the list of available Reaction smileys. Allows you to delete any reaction*.
+  - Add Reactions - *Allows you to add new reaction by uploading a new .gif image file*.
   
 <strong>Note: Currently, only .gif file is allowed to be uploaded.</strong>
 
