@@ -27,7 +27,7 @@
 - A user can react with multiple reactions on same post.
 
 <strong>Admins:</strong>
-- Edit, Add and Remove Reaction Emojis with via Admin Panel.
+- Edit, Add and Remove Reaction Emojis via Admin Panel.
 
 <strong>Admin Tabs:</strong>
 - Admin -> Forum -> VReactions:
@@ -38,7 +38,8 @@
 <strong>Note: Currently, only .gif file is allowed to be uploaded.</strong>
 
 ## Changelog:
-- none
+09/08/2020 - v1.1
+- Fixed a bug reported by Shadav. Now it deletes the checked emojis.
 
 ## License
 * [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/)
