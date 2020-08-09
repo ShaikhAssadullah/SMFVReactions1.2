@@ -312,22 +312,24 @@ function getreactioncount($msg_id, $emoji_id) {
 
 
 //This is the function that catches the call returned from ajax and sends back the output.
-function callReactions() { 
+function callReactions() {
 
-	global $txt;
+	global $user_info, $txt;
 
 	//load the language for strings..
 	loadLanguage('vreactions');
 	
+
+	//verify POST data for security reasons.
 	$request = file_get_contents('php://input');
 	if ($request === FALSE || empty($request)) fatal_error($txt['vreactions_error_no_data']);
 
-	if (isset($_REQUEST['msg_id'])) {
+	if (isset($_POST['msg_id'])) {
 
-		addreaction($_REQUEST['msg_id'], $_REQUEST['emoji_id'], $_REQUEST['member_id']);
+		addreaction($_POST['msg_id'], $_POST['emoji_id'], $user_info['id']);
 
-		$no_of_reactions = getreactioncount($_REQUEST['msg_id'], $_REQUEST['emoji_id']);
-		$who_reacted = getwhoreacted($_REQUEST['msg_id'], $_REQUEST['emoji_id']);
+		$no_of_reactions = getreactioncount($_POST['msg_id'], $_POST['emoji_id']);
+		$who_reacted = getwhoreacted($_POST['msg_id'], $_POST['emoji_id']);
 
 		$return_arr = array('no_of_reactions' => $no_of_reactions, 'who_reacted' => $who_reacted );
 

@@ -201,21 +201,28 @@ function deleteReaction() {
 	$context['page_title'] = $txt['vreactions_tabs_delete'];
 
 	// If nothing was chosen to delete (shouldn't happen, but meh)
-		if (!isset($_REQUEST['delete_emoji_id']) || !isset($_REQUEST['delete_emoji_name'])) 
-			fatal_error($txt['vreactions_error_no_data']);
+	if (!isset($_REQUEST['delete_emoji_id']) || !isset($_REQUEST['delete_emoji_name'])) 
+		fatal_error($txt['vreactions_error_no_data']);
+
+	// We have to generate the IDs and Emoji names for respective emoji from the given array.
+	foreach ($_REQUEST['delete_emoji_id'] as $key => $value)
+		$_REQUEST['delete_emoji_id'][$key] = (int) $value;
+
+	foreach ($_REQUEST['delete_emoji_name'] as $key => $value)
+		$_REQUEST['delete_emoji_name'][$key] = (string) $value;
 
 	//so, we have a proper image now. Defining it's upload directroy.
 	$emoji_loc = $boarddir. '/Themes/default/images/reactions/' .$_REQUEST['delete_emoji_name']. '.gif';
 
 	//we need to inform if the file doesn't exist.
 	$query = $smcFunc['db_query']('',
-		'SELECT emoji_id FROM {db_prefix}v_reactions_emoji 
-		WHERE emoji_id = {int:id_emoji} 
-		OR emoji_name ={string:name_emoji}',
-			array(
-				'id_emoji' => $_REQUEST['delete_emoji_id'],
-				'name_emoji' => $_REQUEST['delete_emoji_name'],
-			)
+		'SELECT * FROM {db_prefix}v_reactions_emoji 
+		WHERE emoji_id IN ({array_int:id_emoji}) 
+		OR emoji_name IN ({array_string:name_emoji})',
+		array(
+			'id_emoji' => $_REQUEST['delete_emoji_id'],
+			'name_emoji' => $_REQUEST['delete_emoji_name'],
+		)
 	);
 
 	if (!file_exists($emoji_loc) && (!$query)) {
@@ -231,7 +238,7 @@ function deleteReaction() {
 
 		$smcFunc['db_query']('',
 			'DELETE FROM {db_prefix}v_reactions_emoji
-			WHERE emoji_id = {int:id_emoji}',
+			WHERE emoji_id IN ({array_int:id_emoji})',
 			array(
 				'id_emoji' => $_REQUEST['delete_emoji_id'],
 			)
@@ -241,7 +248,7 @@ function deleteReaction() {
 		//if file is present, delete from DB and from images directory.
 		$smcFunc['db_query']('',
 			'DELETE FROM {db_prefix}v_reactions_emoji
-			WHERE emoji_id = {int:id_emoji}',
+			WHERE emoji_id IN ({array_int:id_emoji})',
 			array(
 				'id_emoji' => $_REQUEST['delete_emoji_id'],
 			)
@@ -341,14 +348,13 @@ function editReactions() {
 			),
 			'emoji_delete' => array(
 				'header' => array(
-					'value' => $txt['vreactions_emoji_delete'],
+					'value' => $txt['vreactions_emoji_delete']. ' <input type="checkbox" onclick="invertAll(this, this.form, \'delete_emoji_id[]\');" class="input_check" />',
 					'class' => 'last_th',
 				),
 				'data' => array(
 					'sprintf' => array(
-						'format' => '<input type="submit" name="delete" value="Delete" class="button_submit" onclick="confirm(\'' .(string)$txt['vreactions_delete_confirm']. '\');">
-						<input type="hidden" name="delete_emoji_id" value="%1d">
-						<input type="hidden" name="delete_emoji_name" value="%s">',
+						'format' => '<input type="checkbox" name="delete_emoji_id[]" value="%d" class="check" />
+						<input type="hidden" name="delete_emoji_name[]" value="%s" />',
 						'params' => array(
 							'emoji_id' => false,
 							'emoji_name' => false,
@@ -360,6 +366,12 @@ function editReactions() {
 		),
 		'form' => array(
 			'href' => '?action=admin;area=vreactions;sa=delete',
+		),
+		'additional_rows' => array(
+			array(
+				'position' => 'below_table_data',
+				'value' => '<input type="submit" size="18" value="' .$txt['vreactions_emoji_delete']. '" class="button_submit" onclick="confirm(\'' .(string)$txt['vreactions_delete_confirm']. '\');" />',
+			),
 		),
 	);
 
