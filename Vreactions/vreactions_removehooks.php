@@ -12,7 +12,7 @@
 		require_once(dirname(__FILE__) . '/SSI.php');
 
 	elseif (!defined('SMF'))
-		exit('<b>Error:</b> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
+		exit('<b>Error:</b> Cannot uninstall - please verify you put this in the same place as SMF\'s index.php.');
 
 
 remove_integration_function('integrate_pre_include', '$sourcedir/manageReactions.php');

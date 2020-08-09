@@ -6,7 +6,7 @@
 	<!-- Below should be the name of this package. -->
 	<name>SMF Versatile Post Reactions</name>
 	<!-- The version of this modification.  Keep it numeric so PHP can tell that old < new. -->
-	<version>1.0</version>
+	<version>1.1</version>
 
 	<!-- Type, one of: modification, avatar, language. -->
 	<type>modification</type>
