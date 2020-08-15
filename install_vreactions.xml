@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>Decent_946:VReactions</id>
+	<version>1.2</version>
+
+	<!-- Edit a specific file.. -->
+	<file name="$themedir/Display.template.php">
+		<operation>
+			<search position="after"><![CDATA[// Are there any custom profile fields for above the signature?]]></search>
+
+			<add><![CDATA[ 
+	//versatile reactions
+	loadreactionemojis($message['id'], $context['user']['id']);
+]]></add>
+		</operation>
+	</file>
+</modification>
